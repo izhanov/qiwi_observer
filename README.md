@@ -23,7 +23,7 @@ Or install it yourself as:
 #### Инициализируйте объект
  - request = QiwiObserver::Payments.new(wallet: '7XXXXXXXXXX', token: 'asd23dsvdljoihiscgasdcrpoi')
 
-#### Вызовите метод #call  на объекте с переданным хэшом, формата {rows: от 1 до 50, operation*: 'IN'}
+#### Вызовите метод #call  на объекте с переданным хэшом, формата {rows: Integer, operation: String, startDate: DateTime, endDate: DateTime}*
  - response = request.call({rows: 15, operation: 'IN'})
 
 #### Сделайте проверку, при успешном запросе через метод #short_info получите массив хэшей с информацией платежей 
@@ -32,7 +32,9 @@ Or install it yourself as:
  - else
      - redirect_to some_apth flash {error: response.error}
  - end
-    - ##### Возможные значения параметра operation: ALL, IN, OUT & QIWI_CARD
+    - ##### rows: целое число от 1 до 50. Обязательный параметр.
+    - ##### Возможные значения параметра operation: ALL, IN, OUT & QIWI_CARD.
+    - ##### startDate: Начальная дата поиска платежей. Дату можно указать в любой временной зоне TZD (формат ГГГГ-ММ-ДД'T'чч:мм:ссTZD), однако она должна совпадать с временной зоной в параметре endDate.
 
 ## License
 
