@@ -22,7 +22,7 @@ module QiwiObserver
       hash = @value
       hash[:data].each do |tran|
         output << {
-          sender_id: tran[:account],
+          account_id: tran[:account],
           amount: tran[:total][:amount],
           date: tran[:date],
           comment: tran[:comment]
