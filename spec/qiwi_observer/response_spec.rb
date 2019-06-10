@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe QiwiObserver::Response do
   describe '#short_info' do
-    it 'returns array of hashes with :sender_id, :amount, :date & :comment keys' do
+    it 'returns array of hashes with :account_id, :amount, :date & :comment keys' do
       stub_request(:get, "https://edge.qiwi.com/payment-history/v2/persons/77774889669/payments?operation=IN&rows=10").
         with(
           headers: {
