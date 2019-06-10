@@ -19,7 +19,7 @@ Or install it yourself as:
 
     $ gem install qiwi_observer
 
-## Usage
+## Как работать
 #### Инициализируйте объект
  - request = QiwiObserver::Payments.new(wallet: '7XXXXXXXXXX', token: 'asd23dsvdljoihiscgasdcrpoi')
 
