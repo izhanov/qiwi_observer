@@ -26,7 +26,7 @@ Or install it yourself as:
 #### Вызовите метод #call  на объекте с переданным хэшом, формата {rows: Integer, operation: String, startDate: DateTime, endDate: DateTime}*
  - response = request.call({rows: 15, operation: 'IN'})
 
-#### Сделайте проверку, при успешном запросе через метод #short_info получите массив хэшей с информацией платежей 
+#### Сделайте проверку, при успешном запросе через метод #short_info получите массив хэшей с информацией платежей (:account_id, :date, :amount, :comment)
  - if response.success?
      - result = response.short_info
  - else
