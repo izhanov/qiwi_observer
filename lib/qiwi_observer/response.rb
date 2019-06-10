@@ -17,6 +17,15 @@ module QiwiObserver
       @succesess
     end
 
+    def short_info
+      output = []
+      hash = @value
+      hash[:data].each do |tran|
+        output << {sender_id: tran[:account], amount: tran[:total][:amount], date: tran[:date], comment: tran[:comment]}
+      end
+      output
+    end
+
     private
 
     def json_parse(body)
@@ -26,5 +35,6 @@ module QiwiObserver
     def error_description(body)
       'Error ' + body.join(' ')
     end
+
   end
 end
