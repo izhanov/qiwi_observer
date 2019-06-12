@@ -1,4 +1,3 @@
-require 'json'
 module QiwiObserver
   class Response
     attr_reader :value, :error

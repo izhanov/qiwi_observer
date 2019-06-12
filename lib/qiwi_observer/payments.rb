@@ -1,5 +1,3 @@
-require_relative 'response'
-
 module QiwiObserver
   class Payments
     API_PATH = "https://edge.qiwi.com/payment-history/v2/persons/"

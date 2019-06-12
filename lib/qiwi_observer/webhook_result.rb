@@ -18,8 +18,7 @@ module QiwiObserver
 
     def parse_body(body)
       output = body[:payment]
-      output.delete(:signFields)
-      output
+      output.select { |key, val| key != :signFields }.to_h
     end
   end
 end
