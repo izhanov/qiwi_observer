@@ -14,7 +14,7 @@ module QiwiObserver
     end
 
     def success?
-      @succesess
+      @success
     end
 
     def short_info
