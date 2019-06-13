@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/qiwi_observer/payments'
+require './lib/qiwi_observer/payments/payments'
 
 RSpec.describe QiwiObserver::Payments do
 
