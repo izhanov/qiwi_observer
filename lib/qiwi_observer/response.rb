@@ -6,7 +6,7 @@ module QiwiObserver
       @success = success
 
       if @success
-        @value = json_parse(body)
+        @value = parse_body(body)
       else
         @error = error_description(body)
       end
@@ -16,28 +16,14 @@ module QiwiObserver
       @success
     end
 
-    def short_info
-      output = []
-      hash = @value
-      hash[:data].each do |tran|
-        output << {
-          account_id: tran[:account],
-          amount: tran[:total][:amount],
-          date: tran[:date],
-          comment: tran[:comment]
-        }
-      end
-      output
-    end
-
     private
 
-    def json_parse(body)
-      JSON.parse(body, symbolize_names: true)
+    def parse_body(body)
+      raise NotImplementedError
     end
 
     def error_description(body)
-      'Error ' + body.join(' ')
+      raise NotImplementedError
     end
 
   end
