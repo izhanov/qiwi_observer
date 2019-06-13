@@ -17,8 +17,12 @@ module QiwiObserver
     private
 
     def parse_body(body)
-      output = body[:payment]
-      output.select { |key, val| key != :signFields }.to_h
+      if body[:test] != true
+        output = body[:payment]
+        return output.select { |key, val| key != :signFields }.to_h
+      else
+        return body
+      end
     end
 
     def error_description(body)

@@ -6,6 +6,8 @@ module QiwiObserver
     end
 
     def call(params)
+      return WebhookResponse.new(success: true, body: params) if params.dig(:test) == true
+
       if sign_correct?(params)
         return WebhookResponse.new(success: true, body: params)
       else

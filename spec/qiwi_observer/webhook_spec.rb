@@ -164,5 +164,19 @@ RSpec.describe QiwiObserver::Webhook do
         expect(webhook.call(params).error).to eq("This #13353941550 transaction is not authenticated")
       end
     end
+
+    describe "when API send test POST request" do
+      it 'returns empty webhook' do
+        params = {
+          messageId: nil,
+          hookId: "5e2027d1-f5f3-4ad1-b409-058b8b8a8c22",
+          payment: nil,
+          hash: nil,
+          version: "1.0.0",
+          test: true
+        }
+        expect(webhook.call(params).value).to include(messageId: nil, hookId: "5e2027d1-f5f3-4ad1-b409-058b8b8a8c22", payment: nil, hash: nil, version: "1.0.0", test: true)
+      end
+    end
   end
 end
