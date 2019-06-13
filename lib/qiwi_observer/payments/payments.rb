@@ -16,9 +16,9 @@ module QiwiObserver
       response = http.request(request)
 
       if response.is_a?(Net::HTTPOK)
-        return result = PaymentsResponse.new(success: true, body: response.body)
+        return PaymentsResponse.new(success: true, body: response.body)
       else
-        return result = PaymentsResponse.new(success: false, body: [response.code, response.message])
+        return PaymentsResponse.new(success: false, body: [response.code, response.message])
       end
     end
 
