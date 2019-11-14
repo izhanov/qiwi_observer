@@ -1,0 +1,6 @@
+{
+  "hookId": "5e2027d1-f5f3-4ad1-b409-058b8b8a8c22",
+  "hookParameters":{"url":"http://echo.fjfalcon.ru/"},
+  "hookType":"WEB",
+  "txnType":"BOTH"
+}

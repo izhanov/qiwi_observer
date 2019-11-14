@@ -1,0 +1,19 @@
+{
+    "id": "150217833198900",
+    "terms": "99",
+    "fields": {
+        "account": "79121238345"
+    },
+    "sum": {
+        "amount": 100,
+        "currency": "643"
+    },
+    "transaction": {
+        "id": "11155897070",
+        "state": {
+            "code": "Accepted"
+        }
+    },
+    "source": "account_643",
+    "comment": "test"
+}

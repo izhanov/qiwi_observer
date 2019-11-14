@@ -1,11 +1,12 @@
 module QiwiObserver
   class Payments
-    API_PATH = "https://edge.qiwi.com/payment-history/v2/persons/"
+    API_PATH = "https://edge.qiwi.com/payment-history/v2/persons/".freeze
 
-    def initialize(wallet: QiwiObserver.config.wallet, token: QiwiObserver.config.token)
-      raise ArgumentError, "Wallet and token must be set" unless wallet && token
-      @wallet = wallet
-      @token = token
+    def initialize
+      @wallet = QiwiObserver.config.wallet
+      @token = QiwiObserver.config.token
+
+      raise ArgumentError, "Wallet and token must be configure" if @wallet.nil? && @token.nil?
     end
 
     def call(args = {})
@@ -15,11 +16,9 @@ module QiwiObserver
 
       response = http.request(request)
 
-      if response.is_a?(Net::HTTPOK)
-        return PaymentsResponse.new(success: true, body: response.body)
-      else
-        return PaymentsResponse.new(success: false, body: [response.code, response.message])
-      end
+
+      return PaymentsResponse.new(success: true, body: response.body) if response.is_a?(Net::HTTPOK)
+      return PaymentsResponse.new(success: false, body: [response.code, response.message])
     end
 
     private

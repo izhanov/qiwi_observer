@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module QiwiObserver
   class WebhookResponse < Response
     attr_reader :error, :value
@@ -17,16 +19,26 @@ module QiwiObserver
     private
 
     def parse_body(body)
-      if body[:test] != true
-        output = body[:payment]
-        return output.select { |key, val| key != :signFields }.to_h
-      else
-        return body
-      end
+      return parse_hash(body) if body.is_a?(Hash)
+      return parse_json(body) if body.is_a?(String)
     end
 
     def error_description(body)
-      "This ##{body} transaction is not authenticated"
+      return "This ##{body} transaction is not authenticated" if body.is_a?(String)
+      return "Error #{body.first} #{body.last}" if body.is_a?(Array)
+    end
+
+    def parse_hash(body)
+      if body[:test] != true
+        output = body[:payment]
+        output.reject { |key, _val| key == :signFields }.to_h
+      else
+        body
+      end
+    end
+
+    def parse_json(body)
+      output = JSON.parse(body).reduce({}) {|result, (key, value)| result.merge({key.to_sym => value})}
     end
   end
 end

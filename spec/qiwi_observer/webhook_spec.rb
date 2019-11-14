@@ -14,7 +14,7 @@ RSpec.describe QiwiObserver::Webhook do
       end
     end
 
-    describe 'when webhook' do
+    describe 'when webhook response' do
       it 'is success return true' do
         params = {
           messageId: "7814c49d-2d29-4b14-b2dc-36b377c76156",
